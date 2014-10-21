@@ -11,5 +11,4 @@ RUN echo mariadb-galera-server-5.5 mysql-server/root_password password root | de
 RUN echo mariadb-galera-server-5.5 mysql-server/root_password_again password root | debconf-set-selections
 RUN LC_ALL=en_US.utf8 DEBIAN_FRONTEND=noninteractive apt-get -o Dpkg::Options::='--force-confnew' -qqy install mariadb-galera-server galera mariadb-client
 ADD ./my.cnf /etc/mysql/my.cnf
-RUN service mysql restart
 EXPOSE 3306 4444 4567 4568
