@@ -1,1 +1,10 @@
 [template]
+src = "galera.cnf.tmpl"
+dest = "/etc/mysql/conf.d/galera.cnf"
+keys = "/endpoints/galera-cluster-nodes"
+owner = "root"
+mode = "0644"
+
+# We only want to have an up to date config on all nodes, no need to actually restart the server
+check_cmd = "/bin/true"
+reload_cmd = "/bin/true"
