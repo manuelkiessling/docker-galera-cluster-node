@@ -1,7 +1,6 @@
 [mysqld]
 wsrep_provider=/usr/lib/galera/libgalera_smm.so
 wsrep_cluster_address=gcomm://
-wsrep_node_address=
 wsrep_sst_method=rsync
 wsrep_cluster_name=galera_cluster
 binlog_format=ROW
