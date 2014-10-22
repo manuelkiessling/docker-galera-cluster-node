@@ -14,8 +14,8 @@ ExecStartPre=-/bin/bash -c "/usr/bin/docker rm galera-cluster-node-%i"
 ExecStart=/bin/bash -c "/usr/bin/docker run \
                         --name galera-cluster-node-%i \
                         -p 3306:3306 -p 4444:4444 -p 4567:4567 -p 4568:4568 \
-                        -e "ETCD_ENDPOINT=$(ifconfig docker0 | grep 'inet ' | awk '{ print $2}'):4001" \
-                        -e "GALERA_WSREP_NODE_ADDRESS=${COREOS_PRIVATE_IPV4}" \
+                        -e ETCD_ENDPOINT=$(ifconfig docker0 | grep 'inet ' | awk '{ print $2}'):4001 \
+                        -e GALERA_WSREP_NODE_ADDRESS=${COREOS_PRIVATE_IPV4} \
                         $(/usr/bin/etcdctl get /endpoints/registry)/galera-cluster-node:v1 \
                         /bin/bash /opt/start.sh"
 
