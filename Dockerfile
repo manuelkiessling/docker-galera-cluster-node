@@ -12,6 +12,8 @@ RUN echo mariadb-galera-server-5.5 mysql-server/root_password_again password roo
 RUN LC_ALL=en_US.utf8 DEBIAN_FRONTEND=noninteractive apt-get -o Dpkg::Options::='--force-confnew' -qqy install mariadb-galera-server galera mariadb-client
 ADD files/etc/mysql/conf.d/galera.cnf /etc/mysql/conf.d/galera.cnf
 ADD files/etc/mysql/conf.d/wsrep_node_address.cnf /etc/mysql/conf.d/wsrep_node_address.cnf
+ADD files/etc/confd/conf.d/mysql-galera.toml /etc/confd/conf.d/mysql-galera.toml
+ADD files/etc/confd/templates/galera.cnf.tmpl /etc/confd/templates/galera.cnf.tmpl
 ADD files/opt/confd /opt/confd
 ADD files/opt/start.sh /opt/start.sh
 EXPOSE 3306 4444 4567 4568
