@@ -1,0 +1,11 @@
+[Unit]
+Description=Announce urlmonit-agent-%i
+BindsTo=urlmonit-agent@%i.service
+
+[Service]
+EnvironmentFile=/etc/environment
+ExecStart=/bin/bash -c "while true; do etcdctl set /services/urlmonit-agents/%i ${COREOS_PUBLIC_IPV4}:80 --ttl 20; sleep 15; done"
+ExecStop=/usr/bin/etcdctl rm /services/urlmonit-agents/%i
+
+[X-Fleet]
+MachineOf=urlmonit-agent@%i.service
